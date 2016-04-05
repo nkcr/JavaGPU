@@ -1,0 +1,536 @@
+JAVA PROFILE 1.0.1, created Fri Mar 25 14:37:07 2016
+
+Copyright (c) 2003, 2005, Oracle and/or its affiliates. All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions
+are met:
+
+  - Redistributions of source code must retain the above copyright
+    notice, this list of conditions and the following disclaimer.
+
+  - Redistributions in binary form must reproduce the above copyright
+    notice, this list of conditions and the following disclaimer in the
+    documentation and/or other materials provided with the distribution.
+
+  - Neither the name of Oracle nor the names of its
+    contributors may be used to endorse or promote products derived
+    from this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS
+IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
+THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
+PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE COPYRIGHT OWNER OR
+CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+
+Header for -agentlib:hprof (or -Xrunhprof) ASCII Output (JDK 5.0 JVMTI based)
+
+WARNING!  This file format is under development, and is subject to
+change without notice.
+
+This file contains the following types of records:
+
+THREAD START
+THREAD END      mark the lifetime of Java threads
+
+TRACE           represents a Java stack trace.  Each trace consists
+                of a series of stack frames.  Other records refer to
+                TRACEs to identify (1) where object allocations have
+                taken place, (2) the frames in which GC roots were
+                found, and (3) frequently executed methods.
+
+HEAP DUMP       is a complete snapshot of all live objects in the Java
+                heap.  Following distinctions are made:
+
+                ROOT    root set as determined by GC
+                CLS     classes 
+                OBJ     instances
+                ARR     arrays
+
+SITES           is a sorted list of allocation sites.  This identifies
+                the most heavily allocated object types, and the TRACE
+                at which those allocations occurred.
+
+CPU SAMPLES     is a statistical profile of program execution.  The VM
+                periodically samples all running threads, and assigns
+                a quantum to active TRACEs in those threads.  Entries
+                in this record are TRACEs ranked by the percentage of
+                total quanta they consumed; top-ranked TRACEs are
+                typically hot spots in the program.
+
+CPU TIME        is a profile of program execution obtained by measuring
+                the time spent in individual methods (excluding the time
+                spent in callees), as well as by counting the number of
+                times each method is called. Entries in this record are
+                TRACEs ranked by the percentage of total CPU time. The
+                "count" field indicates the number of times each TRACE 
+                is invoked.
+
+MONITOR TIME    is a profile of monitor contention obtained by measuring
+                the time spent by a thread waiting to enter a monitor.
+                Entries in this record are TRACEs ranked by the percentage
+                of total monitor contention time and a brief description
+                of the monitor.  The "count" field indicates the number of 
+                times the monitor was contended at that TRACE.
+
+MONITOR DUMP    is a complete snapshot of all the monitors and threads in 
+                the System.
+
+HEAP DUMP, SITES, CPU SAMPLES|TIME and MONITOR DUMP|TIME records are generated 
+at program exit.  They can also be obtained during program execution by typing 
+Ctrl-\ (on Solaris) or by typing Ctrl-Break (on Win32).
+
+--------
+
+THREAD START (obj=5000018f, id = 200001, name="main", group="main")
+THREAD END (id = 200001)
+THREAD START (obj=5000018f, id = 200004, name="DestroyJavaVM", group="main")
+THREAD END (id = 200004)
+TRACE 300084:
+	java.util.DualPivotQuicksort.sort(DualPivotQuicksort.java:123)
+	java.util.Arrays.sort(Arrays.java:144)
+	GPSort.initSet(GPSort.java:39)
+	GPSort.main(GPSort.java:21)
+TRACE 300115:
+	GPSort.merge2(GPSort.java:52)
+	GPSort.mergeSets(GPSort.java:84)
+	GPSort.mergeSets(GPSort.java:82)
+	GPSort.mergeSets(GPSort.java:82)
+TRACE 300113:
+	GPSort.merge2(GPSort.java:52)
+	GPSort.mergeSets(GPSort.java:84)
+	GPSort.mergeSets(GPSort.java:83)
+	GPSort.mergeSets(GPSort.java:82)
+TRACE 300116:
+	GPSort.merge2(GPSort.java:52)
+	GPSort.mergeSets(GPSort.java:84)
+	GPSort.mergeSets(GPSort.java:83)
+	GPSort.mergeSets(GPSort.java:83)
+TRACE 300072:
+	java.util.DualPivotQuicksort.sort(DualPivotQuicksort.java:392)
+	java.util.DualPivotQuicksort.sort(DualPivotQuicksort.java:145)
+	java.util.Arrays.sort(Arrays.java:144)
+	GPSort.initSet(GPSort.java:39)
+TRACE 300124:
+	GPSort.merge2(GPSort.java:52)
+	GPSort.mergeSets(GPSort.java:84)
+	GPSort.mergeSets(GPSort.java:82)
+	GPSort.mergeSets(GPSort.java:83)
+TRACE 300120:
+	GPSort.merge2(GPSort.java:49)
+	GPSort.mergeSets(GPSort.java:84)
+	GPSort.mergeSets(GPSort.java:83)
+	GPSort.mergeSets(GPSort.java:83)
+TRACE 300121:
+	GPSort.merge2(GPSort.java:49)
+	GPSort.mergeSets(GPSort.java:84)
+	GPSort.mergeSets(GPSort.java:83)
+	GPSort.mergeSets(GPSort.java:82)
+TRACE 300078:
+	java.util.DualPivotQuicksort.sort(DualPivotQuicksort.java:374)
+	java.util.DualPivotQuicksort.sort(DualPivotQuicksort.java:145)
+	java.util.Arrays.sort(Arrays.java:144)
+	GPSort.initSet(GPSort.java:39)
+TRACE 300117:
+	GPSort.merge2(GPSort.java:49)
+	GPSort.mergeSets(GPSort.java:84)
+	GPSort.mergeSets(GPSort.java:82)
+	GPSort.mergeSets(GPSort.java:82)
+TRACE 300091:
+	java.util.DualPivotQuicksort.sort(DualPivotQuicksort.java:392)
+	java.util.DualPivotQuicksort.sort(DualPivotQuicksort.java:472)
+	java.util.DualPivotQuicksort.sort(DualPivotQuicksort.java:145)
+	java.util.Arrays.sort(Arrays.java:144)
+TRACE 300090:
+	GPSort.initSet(GPSort.java:35)
+	GPSort.main(GPSort.java:21)
+TRACE 300073:
+	java.util.DualPivotQuicksort.sort(DualPivotQuicksort.java:127)
+	java.util.Arrays.sort(Arrays.java:144)
+	GPSort.initSet(GPSort.java:39)
+	GPSort.main(GPSort.java:21)
+TRACE 300123:
+	GPSort.merge2(GPSort.java:52)
+	GPSort.mergeSets(GPSort.java:84)
+	GPSort.mergeSets(GPSort.java:82)
+	GPSort.startMergeSort(GPSort.java:73)
+TRACE 300126:
+	GPSort.merge2(GPSort.java:52)
+	GPSort.mergeSets(GPSort.java:80)
+	GPSort.mergeSets(GPSort.java:82)
+	GPSort.mergeSets(GPSort.java:83)
+TRACE 300106:
+	java.util.DualPivotQuicksort.sort(DualPivotQuicksort.java:540)
+	java.util.DualPivotQuicksort.sort(DualPivotQuicksort.java:539)
+	java.util.DualPivotQuicksort.sort(DualPivotQuicksort.java:540)
+	java.util.DualPivotQuicksort.sort(DualPivotQuicksort.java:472)
+TRACE 300096:
+	java.util.DualPivotQuicksort.sort(DualPivotQuicksort.java:501)
+	java.util.DualPivotQuicksort.sort(DualPivotQuicksort.java:145)
+	java.util.Arrays.sort(Arrays.java:144)
+	GPSort.initSet(GPSort.java:39)
+TRACE 300131:
+	GPSort.merge2(GPSort.java:52)
+	GPSort.mergeSets(GPSort.java:84)
+	GPSort.startMergeSort(GPSort.java:73)
+	GPSort.main(GPSort.java:23)
+TRACE 300075:
+	java.util.DualPivotQuicksort.sort(DualPivotQuicksort.java:392)
+	java.util.DualPivotQuicksort.sort(DualPivotQuicksort.java:399)
+	java.util.DualPivotQuicksort.sort(DualPivotQuicksort.java:145)
+	java.util.Arrays.sort(Arrays.java:144)
+TRACE 300108:
+	java.util.DualPivotQuicksort.sort(DualPivotQuicksort.java:392)
+	java.util.DualPivotQuicksort.sort(DualPivotQuicksort.java:540)
+	java.util.DualPivotQuicksort.sort(DualPivotQuicksort.java:472)
+	java.util.DualPivotQuicksort.sort(DualPivotQuicksort.java:145)
+TRACE 300024:
+	sun.misc.URLClassPath$JarLoader.ensureOpen(URLClassPath.java:830)
+	sun.misc.URLClassPath$JarLoader.<init>(URLClassPath.java:803)
+	sun.misc.URLClassPath$3.run(URLClassPath.java:530)
+	sun.misc.URLClassPath$3.run(URLClassPath.java:520)
+TRACE 300047:
+	java.util.LinkedList.linkLast(LinkedList.java:142)
+	java.util.LinkedList.add(LinkedList.java:338)
+	sun.misc.JarIndex.addToList(JarIndex.java:158)
+	sun.misc.JarIndex.addMapping(JarIndex.java:214)
+TRACE 300070:
+	java.util.DualPivotQuicksort.sort(DualPivotQuicksort.java:265)
+	java.util.DualPivotQuicksort.sort(DualPivotQuicksort.java:539)
+	java.util.DualPivotQuicksort.sort(DualPivotQuicksort.java:472)
+	java.util.DualPivotQuicksort.sort(DualPivotQuicksort.java:539)
+TRACE 300071:
+	GPSort.initSet(GPSort.java:36)
+	GPSort.main(GPSort.java:21)
+TRACE 300074:
+	java.util.DualPivotQuicksort.sort(DualPivotQuicksort.java:392)
+	java.util.DualPivotQuicksort.sort(DualPivotQuicksort.java:540)
+	java.util.DualPivotQuicksort.sort(DualPivotQuicksort.java:539)
+	java.util.DualPivotQuicksort.sort(DualPivotQuicksort.java:539)
+TRACE 300076:
+	java.util.DualPivotQuicksort.sort(DualPivotQuicksort.java:133)
+	java.util.Arrays.sort(Arrays.java:144)
+	GPSort.initSet(GPSort.java:39)
+	GPSort.main(GPSort.java:21)
+TRACE 300077:
+	java.util.DualPivotQuicksort.sort(DualPivotQuicksort.java:253)
+	java.util.DualPivotQuicksort.sort(DualPivotQuicksort.java:399)
+	java.util.DualPivotQuicksort.sort(DualPivotQuicksort.java:400)
+	java.util.DualPivotQuicksort.sort(DualPivotQuicksort.java:539)
+TRACE 300079:
+	java.util.DualPivotQuicksort.sort(DualPivotQuicksort.java:125)
+	java.util.Arrays.sort(Arrays.java:144)
+	GPSort.initSet(GPSort.java:39)
+	GPSort.main(GPSort.java:21)
+TRACE 300080:
+	java.util.DualPivotQuicksort.sort(DualPivotQuicksort.java:539)
+	java.util.DualPivotQuicksort.sort(DualPivotQuicksort.java:472)
+	java.util.DualPivotQuicksort.sort(DualPivotQuicksort.java:472)
+	java.util.DualPivotQuicksort.sort(DualPivotQuicksort.java:145)
+TRACE 300081:
+	java.util.DualPivotQuicksort.sort(DualPivotQuicksort.java:400)
+	java.util.DualPivotQuicksort.sort(DualPivotQuicksort.java:399)
+	java.util.DualPivotQuicksort.sort(DualPivotQuicksort.java:540)
+	java.util.DualPivotQuicksort.sort(DualPivotQuicksort.java:399)
+TRACE 300082:
+	java.util.DualPivotQuicksort.sort(DualPivotQuicksort.java:399)
+	java.util.DualPivotQuicksort.sort(DualPivotQuicksort.java:400)
+	java.util.DualPivotQuicksort.sort(DualPivotQuicksort.java:145)
+	java.util.Arrays.sort(Arrays.java:144)
+TRACE 300083:
+	java.util.DualPivotQuicksort.sort(DualPivotQuicksort.java:540)
+	java.util.DualPivotQuicksort.sort(DualPivotQuicksort.java:539)
+	java.util.DualPivotQuicksort.sort(DualPivotQuicksort.java:539)
+	java.util.DualPivotQuicksort.sort(DualPivotQuicksort.java:399)
+TRACE 300085:
+	java.util.DualPivotQuicksort.sort(DualPivotQuicksort.java:540)
+	java.util.DualPivotQuicksort.sort(DualPivotQuicksort.java:400)
+	java.util.DualPivotQuicksort.sort(DualPivotQuicksort.java:539)
+	java.util.DualPivotQuicksort.sort(DualPivotQuicksort.java:472)
+TRACE 300086:
+	java.util.DualPivotQuicksort.sort(DualPivotQuicksort.java:374)
+	java.util.DualPivotQuicksort.sort(DualPivotQuicksort.java:540)
+	java.util.DualPivotQuicksort.sort(DualPivotQuicksort.java:472)
+	java.util.DualPivotQuicksort.sort(DualPivotQuicksort.java:399)
+TRACE 300087:
+	java.util.DualPivotQuicksort.sort(DualPivotQuicksort.java:540)
+	java.util.DualPivotQuicksort.sort(DualPivotQuicksort.java:399)
+	java.util.DualPivotQuicksort.sort(DualPivotQuicksort.java:539)
+	java.util.DualPivotQuicksort.sort(DualPivotQuicksort.java:399)
+TRACE 300088:
+	java.util.DualPivotQuicksort.sort(DualPivotQuicksort.java:392)
+	java.util.DualPivotQuicksort.sort(DualPivotQuicksort.java:540)
+	java.util.DualPivotQuicksort.sort(DualPivotQuicksort.java:472)
+	java.util.DualPivotQuicksort.sort(DualPivotQuicksort.java:539)
+TRACE 300089:
+	java.util.DualPivotQuicksort.sort(DualPivotQuicksort.java:540)
+	java.util.DualPivotQuicksort.sort(DualPivotQuicksort.java:540)
+	java.util.DualPivotQuicksort.sort(DualPivotQuicksort.java:472)
+	java.util.DualPivotQuicksort.sort(DualPivotQuicksort.java:472)
+TRACE 300092:
+	java.util.DualPivotQuicksort.sort(DualPivotQuicksort.java:501)
+	java.util.DualPivotQuicksort.sort(DualPivotQuicksort.java:472)
+	java.util.DualPivotQuicksort.sort(DualPivotQuicksort.java:400)
+	java.util.DualPivotQuicksort.sort(DualPivotQuicksort.java:145)
+TRACE 300093:
+	java.util.DualPivotQuicksort.sort(DualPivotQuicksort.java:539)
+	java.util.DualPivotQuicksort.sort(DualPivotQuicksort.java:540)
+	java.util.DualPivotQuicksort.sort(DualPivotQuicksort.java:540)
+	java.util.DualPivotQuicksort.sort(DualPivotQuicksort.java:399)
+TRACE 300094:
+	java.util.DualPivotQuicksort.sort(DualPivotQuicksort.java:374)
+	java.util.DualPivotQuicksort.sort(DualPivotQuicksort.java:472)
+	java.util.DualPivotQuicksort.sort(DualPivotQuicksort.java:400)
+	java.util.DualPivotQuicksort.sort(DualPivotQuicksort.java:400)
+TRACE 300095:
+	java.util.DualPivotQuicksort.sort(DualPivotQuicksort.java:229)
+	java.util.DualPivotQuicksort.sort(DualPivotQuicksort.java:399)
+	java.util.DualPivotQuicksort.sort(DualPivotQuicksort.java:539)
+	java.util.DualPivotQuicksort.sort(DualPivotQuicksort.java:539)
+TRACE 300097:
+	java.util.DualPivotQuicksort.sort(DualPivotQuicksort.java:399)
+	java.util.DualPivotQuicksort.sort(DualPivotQuicksort.java:400)
+	java.util.DualPivotQuicksort.sort(DualPivotQuicksort.java:399)
+	java.util.DualPivotQuicksort.sort(DualPivotQuicksort.java:145)
+TRACE 300098:
+	java.util.DualPivotQuicksort.sort(DualPivotQuicksort.java:399)
+	java.util.DualPivotQuicksort.sort(DualPivotQuicksort.java:472)
+	java.util.DualPivotQuicksort.sort(DualPivotQuicksort.java:400)
+	java.util.DualPivotQuicksort.sort(DualPivotQuicksort.java:145)
+TRACE 300099:
+	java.util.DualPivotQuicksort.sort(DualPivotQuicksort.java:501)
+	java.util.DualPivotQuicksort.sort(DualPivotQuicksort.java:539)
+	java.util.DualPivotQuicksort.sort(DualPivotQuicksort.java:539)
+	java.util.DualPivotQuicksort.sort(DualPivotQuicksort.java:539)
+TRACE 300100:
+	java.util.DualPivotQuicksort.sort(DualPivotQuicksort.java:392)
+	java.util.DualPivotQuicksort.sort(DualPivotQuicksort.java:400)
+	java.util.DualPivotQuicksort.sort(DualPivotQuicksort.java:400)
+	java.util.DualPivotQuicksort.sort(DualPivotQuicksort.java:145)
+TRACE 300101:
+	java.util.DualPivotQuicksort.sort(DualPivotQuicksort.java:392)
+	java.util.DualPivotQuicksort.sort(DualPivotQuicksort.java:399)
+	java.util.DualPivotQuicksort.sort(DualPivotQuicksort.java:472)
+	java.util.DualPivotQuicksort.sort(DualPivotQuicksort.java:145)
+TRACE 300102:
+	java.util.DualPivotQuicksort.sort(DualPivotQuicksort.java:539)
+	java.util.DualPivotQuicksort.sort(DualPivotQuicksort.java:540)
+	java.util.DualPivotQuicksort.sort(DualPivotQuicksort.java:540)
+	java.util.DualPivotQuicksort.sort(DualPivotQuicksort.java:539)
+TRACE 300103:
+	java.util.DualPivotQuicksort.sort(DualPivotQuicksort.java:392)
+	java.util.DualPivotQuicksort.sort(DualPivotQuicksort.java:472)
+	java.util.DualPivotQuicksort.sort(DualPivotQuicksort.java:472)
+	java.util.DualPivotQuicksort.sort(DualPivotQuicksort.java:145)
+TRACE 300104:
+	java.util.DualPivotQuicksort.sort(DualPivotQuicksort.java:501)
+	java.util.DualPivotQuicksort.sort(DualPivotQuicksort.java:399)
+	java.util.DualPivotQuicksort.sort(DualPivotQuicksort.java:540)
+	java.util.DualPivotQuicksort.sort(DualPivotQuicksort.java:145)
+TRACE 300105:
+	java.util.DualPivotQuicksort.sort(DualPivotQuicksort.java:399)
+	java.util.DualPivotQuicksort.sort(DualPivotQuicksort.java:472)
+	java.util.DualPivotQuicksort.sort(DualPivotQuicksort.java:472)
+	java.util.DualPivotQuicksort.sort(DualPivotQuicksort.java:145)
+TRACE 300107:
+	java.util.DualPivotQuicksort.sort(DualPivotQuicksort.java:472)
+	java.util.DualPivotQuicksort.sort(DualPivotQuicksort.java:400)
+	java.util.DualPivotQuicksort.sort(DualPivotQuicksort.java:540)
+	java.util.DualPivotQuicksort.sort(DualPivotQuicksort.java:145)
+TRACE 300109:
+	java.util.DualPivotQuicksort.sort(DualPivotQuicksort.java:501)
+	java.util.DualPivotQuicksort.sort(DualPivotQuicksort.java:399)
+	java.util.DualPivotQuicksort.sort(DualPivotQuicksort.java:145)
+	java.util.Arrays.sort(Arrays.java:144)
+TRACE 300110:
+	java.util.DualPivotQuicksort.sort(DualPivotQuicksort.java:512)
+	java.util.DualPivotQuicksort.sort(DualPivotQuicksort.java:540)
+	java.util.DualPivotQuicksort.sort(DualPivotQuicksort.java:399)
+	java.util.DualPivotQuicksort.sort(DualPivotQuicksort.java:400)
+TRACE 300111:
+	java.util.DualPivotQuicksort.sort(DualPivotQuicksort.java:392)
+	java.util.DualPivotQuicksort.sort(DualPivotQuicksort.java:400)
+	java.util.DualPivotQuicksort.sort(DualPivotQuicksort.java:145)
+	java.util.Arrays.sort(Arrays.java:144)
+TRACE 300112:
+	java.util.DualPivotQuicksort.sort(DualPivotQuicksort.java:540)
+	java.util.DualPivotQuicksort.sort(DualPivotQuicksort.java:472)
+	java.util.DualPivotQuicksort.sort(DualPivotQuicksort.java:400)
+	java.util.DualPivotQuicksort.sort(DualPivotQuicksort.java:400)
+TRACE 300114:
+	GPSort.mergeSets(GPSort.java:77)
+	GPSort.mergeSets(GPSort.java:83)
+	GPSort.mergeSets(GPSort.java:83)
+	GPSort.mergeSets(GPSort.java:83)
+TRACE 300118:
+	GPSort.merge2(GPSort.java:49)
+	GPSort.mergeSets(GPSort.java:80)
+	GPSort.mergeSets(GPSort.java:83)
+	GPSort.mergeSets(GPSort.java:83)
+TRACE 300119:
+	GPSort.merge2(GPSort.java:49)
+	GPSort.mergeSets(GPSort.java:80)
+	GPSort.mergeSets(GPSort.java:82)
+	GPSort.mergeSets(GPSort.java:83)
+TRACE 300122:
+	GPSort.merge2(GPSort.java:49)
+	GPSort.mergeSets(GPSort.java:84)
+	GPSort.mergeSets(GPSort.java:82)
+	GPSort.startMergeSort(GPSort.java:73)
+TRACE 300125:
+	GPSort.mergeSets(GPSort.java:83)
+	GPSort.mergeSets(GPSort.java:82)
+	GPSort.mergeSets(GPSort.java:82)
+	GPSort.mergeSets(GPSort.java:83)
+TRACE 300127:
+	GPSort.merge2(GPSort.java:52)
+	GPSort.mergeSets(GPSort.java:80)
+	GPSort.mergeSets(GPSort.java:82)
+	GPSort.mergeSets(GPSort.java:82)
+TRACE 300128:
+	GPSort.merge2(GPSort.java:49)
+	GPSort.mergeSets(GPSort.java:84)
+	GPSort.mergeSets(GPSort.java:83)
+	GPSort.startMergeSort(GPSort.java:73)
+TRACE 300129:
+	GPSort.merge2(GPSort.java:52)
+	GPSort.mergeSets(GPSort.java:84)
+	GPSort.mergeSets(GPSort.java:83)
+	GPSort.startMergeSort(GPSort.java:73)
+TRACE 300130:
+	GPSort.merge2(GPSort.java:49)
+	GPSort.mergeSets(GPSort.java:84)
+	GPSort.startMergeSort(GPSort.java:73)
+	GPSort.main(GPSort.java:23)
+TRACE 300132:
+	java.lang.Object.clone(Object.java:Unknown line)
+	GPSort.main(GPSort.java:25)
+TRACE 300133:
+	java.util.DualPivotQuicksort.sort(DualPivotQuicksort.java:340)
+	java.util.DualPivotQuicksort.sort(DualPivotQuicksort.java:134)
+	java.util.Arrays.sort(Arrays.java:144)
+	GPSort.main(GPSort.java:26)
+TRACE 300134:
+	java.util.DualPivotQuicksort.sort(DualPivotQuicksort.java:339)
+	java.util.DualPivotQuicksort.sort(DualPivotQuicksort.java:399)
+	java.util.DualPivotQuicksort.sort(DualPivotQuicksort.java:134)
+	java.util.Arrays.sort(Arrays.java:144)
+TRACE 300135:
+	java.util.DualPivotQuicksort.sort(DualPivotQuicksort.java:501)
+	java.util.DualPivotQuicksort.sort(DualPivotQuicksort.java:400)
+	java.util.DualPivotQuicksort.sort(DualPivotQuicksort.java:399)
+	java.util.DualPivotQuicksort.sort(DualPivotQuicksort.java:399)
+TRACE 300136:
+	java.util.DualPivotQuicksort.sort(DualPivotQuicksort.java:512)
+	java.util.DualPivotQuicksort.sort(DualPivotQuicksort.java:472)
+	java.util.DualPivotQuicksort.sort(DualPivotQuicksort.java:400)
+	java.util.DualPivotQuicksort.sort(DualPivotQuicksort.java:399)
+TRACE 300137:
+	java.util.DualPivotQuicksort.sort(DualPivotQuicksort.java:340)
+	java.util.DualPivotQuicksort.sort(DualPivotQuicksort.java:400)
+	java.util.DualPivotQuicksort.sort(DualPivotQuicksort.java:134)
+	java.util.Arrays.sort(Arrays.java:144)
+TRACE 300138:
+	java.util.DualPivotQuicksort.sort(DualPivotQuicksort.java:340)
+	java.util.DualPivotQuicksort.sort(DualPivotQuicksort.java:400)
+	java.util.DualPivotQuicksort.sort(DualPivotQuicksort.java:400)
+	java.util.DualPivotQuicksort.sort(DualPivotQuicksort.java:134)
+TRACE 300139:
+	java.util.DualPivotQuicksort.sort(DualPivotQuicksort.java:501)
+	java.util.DualPivotQuicksort.sort(DualPivotQuicksort.java:539)
+	java.util.DualPivotQuicksort.sort(DualPivotQuicksort.java:399)
+	java.util.DualPivotQuicksort.sort(DualPivotQuicksort.java:472)
+TRACE 300140:
+	java.util.DualPivotQuicksort.sort(DualPivotQuicksort.java:392)
+	java.util.DualPivotQuicksort.sort(DualPivotQuicksort.java:399)
+	java.util.DualPivotQuicksort.sort(DualPivotQuicksort.java:472)
+	java.util.DualPivotQuicksort.sort(DualPivotQuicksort.java:134)
+TRACE 300141:
+	java.util.DualPivotQuicksort.sort(DualPivotQuicksort.java:512)
+	java.util.DualPivotQuicksort.sort(DualPivotQuicksort.java:472)
+	java.util.DualPivotQuicksort.sort(DualPivotQuicksort.java:400)
+	java.util.DualPivotQuicksort.sort(DualPivotQuicksort.java:472)
+CPU SAMPLES BEGIN (total = 142) Fri Mar 25 14:37:09 2016
+rank   self  accum   count trace method
+   1  7,75%  7,75%      11 300084 java.util.DualPivotQuicksort.sort
+   2  7,75% 15,49%      11 300115 GPSort.merge2
+   3  7,04% 22,54%      10 300113 GPSort.merge2
+   4  6,34% 28,87%       9 300116 GPSort.merge2
+   5  4,93% 33,80%       7 300072 java.util.DualPivotQuicksort.sort
+   6  3,52% 37,32%       5 300124 GPSort.merge2
+   7  2,82% 40,14%       4 300120 GPSort.merge2
+   8  2,82% 42,96%       4 300121 GPSort.merge2
+   9  2,11% 45,07%       3 300078 java.util.DualPivotQuicksort.sort
+  10  2,11% 47,18%       3 300117 GPSort.merge2
+  11  2,11% 49,30%       3 300091 java.util.DualPivotQuicksort.sort
+  12  2,11% 51,41%       3 300090 GPSort.initSet
+  13  1,41% 52,82%       2 300073 java.util.DualPivotQuicksort.sort
+  14  1,41% 54,23%       2 300123 GPSort.merge2
+  15  1,41% 55,63%       2 300126 GPSort.merge2
+  16  1,41% 57,04%       2 300106 java.util.DualPivotQuicksort.sort
+  17  1,41% 58,45%       2 300096 java.util.DualPivotQuicksort.sort
+  18  1,41% 59,86%       2 300131 GPSort.merge2
+  19  1,41% 61,27%       2 300075 java.util.DualPivotQuicksort.sort
+  20  0,70% 61,97%       1 300108 java.util.DualPivotQuicksort.sort
+  21  0,70% 62,68%       1 300024 sun.misc.URLClassPath$JarLoader.ensureOpen
+  22  0,70% 63,38%       1 300047 java.util.LinkedList.linkLast
+  23  0,70% 64,08%       1 300070 java.util.DualPivotQuicksort.sort
+  24  0,70% 64,79%       1 300071 GPSort.initSet
+  25  0,70% 65,49%       1 300074 java.util.DualPivotQuicksort.sort
+  26  0,70% 66,20%       1 300076 java.util.DualPivotQuicksort.sort
+  27  0,70% 66,90%       1 300077 java.util.DualPivotQuicksort.sort
+  28  0,70% 67,61%       1 300079 java.util.DualPivotQuicksort.sort
+  29  0,70% 68,31%       1 300080 java.util.DualPivotQuicksort.sort
+  30  0,70% 69,01%       1 300081 java.util.DualPivotQuicksort.sort
+  31  0,70% 69,72%       1 300082 java.util.DualPivotQuicksort.sort
+  32  0,70% 70,42%       1 300083 java.util.DualPivotQuicksort.sort
+  33  0,70% 71,13%       1 300085 java.util.DualPivotQuicksort.sort
+  34  0,70% 71,83%       1 300086 java.util.DualPivotQuicksort.sort
+  35  0,70% 72,54%       1 300087 java.util.DualPivotQuicksort.sort
+  36  0,70% 73,24%       1 300088 java.util.DualPivotQuicksort.sort
+  37  0,70% 73,94%       1 300089 java.util.DualPivotQuicksort.sort
+  38  0,70% 74,65%       1 300092 java.util.DualPivotQuicksort.sort
+  39  0,70% 75,35%       1 300093 java.util.DualPivotQuicksort.sort
+  40  0,70% 76,06%       1 300094 java.util.DualPivotQuicksort.sort
+  41  0,70% 76,76%       1 300095 java.util.DualPivotQuicksort.sort
+  42  0,70% 77,46%       1 300097 java.util.DualPivotQuicksort.sort
+  43  0,70% 78,17%       1 300098 java.util.DualPivotQuicksort.sort
+  44  0,70% 78,87%       1 300099 java.util.DualPivotQuicksort.sort
+  45  0,70% 79,58%       1 300100 java.util.DualPivotQuicksort.sort
+  46  0,70% 80,28%       1 300101 java.util.DualPivotQuicksort.sort
+  47  0,70% 80,99%       1 300102 java.util.DualPivotQuicksort.sort
+  48  0,70% 81,69%       1 300103 java.util.DualPivotQuicksort.sort
+  49  0,70% 82,39%       1 300104 java.util.DualPivotQuicksort.sort
+  50  0,70% 83,10%       1 300105 java.util.DualPivotQuicksort.sort
+  51  0,70% 83,80%       1 300107 java.util.DualPivotQuicksort.sort
+  52  0,70% 84,51%       1 300109 java.util.DualPivotQuicksort.sort
+  53  0,70% 85,21%       1 300110 java.util.DualPivotQuicksort.sort
+  54  0,70% 85,92%       1 300111 java.util.DualPivotQuicksort.sort
+  55  0,70% 86,62%       1 300112 java.util.DualPivotQuicksort.sort
+  56  0,70% 87,32%       1 300114 GPSort.mergeSets
+  57  0,70% 88,03%       1 300118 GPSort.merge2
+  58  0,70% 88,73%       1 300119 GPSort.merge2
+  59  0,70% 89,44%       1 300122 GPSort.merge2
+  60  0,70% 90,14%       1 300125 GPSort.mergeSets
+  61  0,70% 90,85%       1 300127 GPSort.merge2
+  62  0,70% 91,55%       1 300128 GPSort.merge2
+  63  0,70% 92,25%       1 300129 GPSort.merge2
+  64  0,70% 92,96%       1 300130 GPSort.merge2
+  65  0,70% 93,66%       1 300132 java.lang.Object.clone
+  66  0,70% 94,37%       1 300133 java.util.DualPivotQuicksort.sort
+  67  0,70% 95,07%       1 300134 java.util.DualPivotQuicksort.sort
+  68  0,70% 95,77%       1 300135 java.util.DualPivotQuicksort.sort
+  69  0,70% 96,48%       1 300136 java.util.DualPivotQuicksort.sort
+  70  0,70% 97,18%       1 300137 java.util.DualPivotQuicksort.sort
+  71  0,70% 97,89%       1 300138 java.util.DualPivotQuicksort.sort
+  72  0,70% 98,59%       1 300139 java.util.DualPivotQuicksort.sort
+  73  0,70% 99,30%       1 300140 java.util.DualPivotQuicksort.sort
+  74  0,70% 100,00%       1 300141 java.util.DualPivotQuicksort.sort
+CPU SAMPLES END
