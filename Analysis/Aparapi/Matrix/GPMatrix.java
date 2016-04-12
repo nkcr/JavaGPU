@@ -1,4 +1,5 @@
 import java.util.Random;
+import com.amd.aparapi.Kernel;
 
 public class GPMatrix {
 
@@ -24,7 +25,7 @@ public class GPMatrix {
     // --------------------------------
     long startTime = System.currentTimeMillis();
     // --- Start of benchmark zone --->
-    matrixMul(A,B,C);
+    new AparapiMatrixMul(A,B,C, size).execute(size);
     // <--- End of benchmark zone -----
     long stopTime = System.currentTimeMillis();
     // --------------------------------
@@ -49,21 +50,6 @@ public class GPMatrix {
     }
   }
 
-  // Computes matrix multiplication C = AB
-  public static void matrixMul(double[][] A, double[][] B, double[][] C) {
-    for(int i=0; i < size; i++) {
-      for(int j=0; j < size; j++) {
-        double sum = 0.0;
-        for(int k=0; k < size; k++) {
-          sum += A[i][k] * B[k][j];
-        }
-        C[i][j] = sum;
-        if(verbose > 1) System.out.print("\t" + C[i][j]);
-      }
-      if(verbose > 1) System.out.print("\n");
-    }
-  }
-
   // Displays the content of matrix A
   public static void printMatrix(double[][] A) {
     for(int row=0; row < size; row++) {
@@ -72,6 +58,34 @@ public class GPMatrix {
       }
       System.out.print("\n");
     }
+  }
+
+}
+
+class AparapiMatrixMul extends Kernel {
+
+  double[][] A;
+  double[][] B;
+  double[][] C;
+  int size;
+
+  public AparapiMatrixMul(double[][] A, double[][] B, double[][] C, int size) {
+    this.A = A; this.B = B; this.C = C;
+    this.size = size;
+  }
+
+  @Override
+  public void run() {
+    int i = getGlobalId();
+    // Start kernel execution
+    for(int j=0; j < size; j++) {
+      double sum = 0.0;
+      for(int k=0; k < size; k++) {
+        sum += A[i][k] * B[k][j];
+      }
+      C[i][j] = sum;
+    }
+    // End kernel execution
   }
 
 }
