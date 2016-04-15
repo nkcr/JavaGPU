@@ -9,7 +9,7 @@ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/localuser/JavaGPU/Analysis/Aparapi
 To compile, include the jar :
 
 ```
-javac -ap aparapi.jar MyProgram.java
+javac -cp aparapi.jar MyProgram.java
 ```
 
 To run, also include the jar :
