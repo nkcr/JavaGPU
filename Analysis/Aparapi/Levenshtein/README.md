@@ -1,8 +1,8 @@
 ### Simple java launch
 
 ```
-javac -cp aparapi.jar:. GPMatrix.java
-java -cp aparapi.jar:. GPMatrix 1000
+javac -cp aparapi.jar:. GPLevenshtein.java
+java -cp aparapi.jar:. GPLevenshtein 1000
 ```
 
 ### Bash
