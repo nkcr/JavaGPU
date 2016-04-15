@@ -1,36 +1,54 @@
+import java.io.FileReader;
+import java.io.BufferedReader;
+import java.io.IOException;
+
 public class GPLevenshtein {
 
   public static void main(String [] args) {
 
     if(args.length < 2) {
-      System.err.println("Needs two arguments: <string a> <string b>");
+      System.err.println("Needs two arguments: <file a> <file b>");
       System.exit(0);
     }
-    String a = args[0];
-    String b = args[1];
+    String filea = args[0];
+    String fileb = args[1];
+    String a = null;
+    String b = null;
 
-    // Benchmark initialization
+    try {
+      FileReader fra = new FileReader(filea);
+      BufferedReader bra = new BufferedReader(fra);
+      a = bra.readLine();
+      FileReader frb = new FileReader(fileb);
+      BufferedReader brb = new BufferedReader(frb);
+      b = brb.readLine();
+    } catch (IOException e) {
+      e.printStackTrace();
+      System.exit(0);
+    }
+
+    // --------------------------------
     long startTime = System.currentTimeMillis();
+    // --- Start of benchmark zone --->
     int dist = distance(a, b);
+    // <--- End of benchmark zone -----
     long stopTime = System.currentTimeMillis();
+    // --------------------------------
 
-    // Compute elapsed time
+    // Benchmark time elapsed computation
     long elapsedTime = stopTime - startTime;
-    System.out.println(elapsedTime/1000);
 
+    // Output
+    System.out.println(elapsedTime/1000);
     // System.out.println("distance: " + dist);
   }
 
   // Compute the distance between a and b
   public static int distance(String a, String b) {
-    a = a.toLowerCase();
-    b = b.toLowerCase();
-    // i == 0
     int [] costs = new int [b.length() + 1];
     for (int j = 0; j < costs.length; j++)
       costs[j] = j;
     for (int i = 1; i <= a.length(); i++) {
-      // j == 0; nw = lev(i - 1, j)
       costs[0] = i;
       computeRow(costs, i, a, b);
     }
