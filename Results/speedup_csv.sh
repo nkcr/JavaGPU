@@ -1,11 +1,11 @@
-#! /bin/sh
+#! /bin/bash
 
 # Usage : <vanilla.csv> <gpu.csv>
 
 IFS=','
 paste -d',' $1 $2 | while read f1 f2 f3 f4; do
   if [ $f4 -ne 0 ]; then
-    speedup=$((f2/f4))
+    speedup=`bc -l <<< "$f2/$f4"`
   else
     speedup=0
   fi
