@@ -45,3 +45,21 @@ gnuplot> load 'speedup_aparapi_leven_gnuplot.sh'
 ```
 ./speedup_csv.sh /Users/nkcr/Documents/GitHub/JavaGPU/Vanilla/Levenshtein/stats/10k-50k-100k-200k-300k-400k-500k.csv /Users/nkcr/Documents/GitHub/JavaGPU/Analysis/Aparapi/Levenshtein/stats/10k-50k-100k-200k-300k-400k-500k.csv > speedup_aparapi_leven-10k-50k-100k-200k-300k-400k-500k.csv
 ```
+
+### Average
+
+```
+cat speedup_aparapi_matrix_100-3000-100.csv | awk -F' ' '{sum+=$2} END {print sum/NR}'
+```
+
+### Median
+
+```
+sort -k2 -n speedup_aparapi_matrix_100-3000-100.csv | awk ' { a[i++]=$2; } END { print a[int(i/2)]; }'
+```
+
+### Standard deviation
+
+```
+cat speedup_aparapi_matrix_100-3000-100.csv | awk '{x+=$2;y+=$2^2}END{print sqrt(y/NR-(x/NR)^2)}'
+```
