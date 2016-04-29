@@ -3,7 +3,7 @@
 ### 1 Compute speedup
 
 ```
-./speedup_matrix.sh ../Vanilla/Levenshtein/stats/10k-50k-100k-200k-300k-400k-500k.csv ../Analysis/Aparapi/Levenshtein/stats/10k-50k-100k-200k-300k-400k-500k.csv > speedup_aparapi_leven-10k-50k-100k-200k-300k-400k-500k.csv
+./speedup.sh ../Vanilla/Levenshtein/stats/10k-50k-100k-200k-300k-400k-500k.csv ../Analysis/Aparapi/Levenshtein/stats/10k-50k-100k-200k-300k-400k-500k.csv > speedup_aparapi_leven-10k-50k-100k-200k-300k-400k-500k.csv
 ```
 
 ### 2 Create gnuplot script
