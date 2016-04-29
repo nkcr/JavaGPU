@@ -37,13 +37,13 @@ gnuplot> load 'speedup_aparapi_leven_gnuplot.sh'
 ### Matrix Aparapi
 
 ```
-./speedup_csv.sh /Users/nkcr/Documents/GitHub/JavaGPU/Vanilla/Matrix/stats/GPMatrix-100-3000-100.csv /Users/nkcr/Documents/GitHub/JavaGPU/Analysis/Aparapi/Matrix/stats/GPMatrix-100-3000-100.csv > speedup_aparapi_matrix_100-3000-100.csv
+./speedup_csv.sh ../Vanilla/Matrix/stats/GPMatrix-100-3000-100.csv ../Analysis/Aparapi/Matrix/stats/GPMatrix-100-3000-100.csv > speedup_aparapi_matrix_100-3000-100.csv
 ```
 
 ### Levenshtein Aparapi
 
 ```
-./speedup_csv.sh /Users/nkcr/Documents/GitHub/JavaGPU/Vanilla/Levenshtein/stats/10k-50k-100k-200k-300k-400k-500k.csv /Users/nkcr/Documents/GitHub/JavaGPU/Analysis/Aparapi/Levenshtein/stats/10k-50k-100k-200k-300k-400k-500k.csv > speedup_aparapi_leven-10k-50k-100k-200k-300k-400k-500k.csv
+./speedup_csv.sh ../Vanilla/Levenshtein/stats/10k-50k-100k-200k-300k-400k-500k.csv ../Analysis/Aparapi/Levenshtein/stats/10k-50k-100k-200k-300k-400k-500k.csv > speedup_aparapi_leven_10k-50k-100k-200k-300k-400k-500k.csv
 ```
 
 ### Matrix JCuda
