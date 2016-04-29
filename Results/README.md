@@ -3,7 +3,7 @@
 ### 1 Compute speedup
 
 ```
-./speedup.sh ../Vanilla/Levenshtein/stats/10k-50k-100k-200k-300k-400k-500k.csv ../Analysis/Aparapi/Levenshtein/stats/10k-50k-100k-200k-300k-400k-500k.csv > speedup_aparapi_leven-10k-50k-100k-200k-300k-400k-500k.csv
+./speedup_csv.sh ../Vanilla/Levenshtein/stats/10k-50k-100k-200k-300k-400k-500k.csv ../Analysis/Aparapi/Levenshtein/stats/10k-50k-100k-200k-300k-400k-500k.csv > speedup_aparapi_leven-10k-50k-100k-200k-300k-400k-500k.csv
 ```
 
 ### 2 Create gnuplot script
@@ -44,6 +44,18 @@ gnuplot> load 'speedup_aparapi_leven_gnuplot.sh'
 
 ```
 ./speedup_csv.sh /Users/nkcr/Documents/GitHub/JavaGPU/Vanilla/Levenshtein/stats/10k-50k-100k-200k-300k-400k-500k.csv /Users/nkcr/Documents/GitHub/JavaGPU/Analysis/Aparapi/Levenshtein/stats/10k-50k-100k-200k-300k-400k-500k.csv > speedup_aparapi_leven-10k-50k-100k-200k-300k-400k-500k.csv
+```
+
+### Matrix JCuda
+
+```
+./speedup_csv.sh ../Vanilla/Matrix/stats/GPMatrix-100-3000-100.csv ../Analysis/JCuda/Matrix/stats/GPMatrix-100-3000-100.csv > speedup_jcuda_matrix_100-3000-100.csv
+```
+
+### Stats
+
+```
+./stats.sh speedup_jcuda_matrix_100-3000-100.csv
 ```
 
 ### Average
