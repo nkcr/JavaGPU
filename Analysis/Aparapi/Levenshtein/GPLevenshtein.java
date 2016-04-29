@@ -7,15 +7,17 @@ public class GPLevenshtein {
 
   public static void main(String [] args) {
 
+    // Params handling
     if(args.length < 2) {
       System.err.println("Needs two arguments: <file a> <file b>");
       System.exit(0);
     }
     String filea = args[0];
     String fileb = args[1];
-    char[] a = null;
-    char[] b = null;
+    char[] a = null; // First string
+    char[] b = null; // Second string
 
+    // Reading files, filling a & b
     try {
       FileReader fra = new FileReader(filea);
       BufferedReader bra = new BufferedReader(fra);
@@ -45,13 +47,14 @@ public class GPLevenshtein {
 
 }
 
+// Is the class that sends job on the GPU
 class AparapiLevenshtein extends Kernel {
 
-  char[] a;
-  char[] b;
+  char[] a; // The first string
+  char[] b; // The second string
 
-  int[] costs;
-  int blen; // https://github.com/steelted/aparapi/issues/117
+  int[] costs; // Will contain the result
+  int blen;    // https://github.com/steelted/aparapi/issues/117
 
   public AparapiLevenshtein(char[] a, char[] b) {
 
@@ -66,8 +69,9 @@ class AparapiLevenshtein extends Kernel {
   }
 
   @Override
+  // Kernel method
   public void run() {
-    int i = getGlobalId();
+    int i = getGlobalId(); // The id of the thread
     if(i==0) return;
 
     costs[0] = i;

@@ -1,6 +1,6 @@
 #! /bin/bash
-set terminal png
-set output "speedup_aparapi_leven.png"
+set terminal pdfcairo
+set output "speedup_aparapi_leven.pdf"
 set title "GPLevenshtein - speedup with aparapi"
 set xlabel "String size"
 set xtics rotate by 45 offset -0.8,-1.8

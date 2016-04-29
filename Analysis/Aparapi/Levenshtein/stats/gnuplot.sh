@@ -1,12 +1,10 @@
 #! /bin/bash
-set terminal png
-set output "plot.png"
-set title "GPLevenshtein - time over strings size"
-set xlabel "Strings size"
+set terminal pdfcairo
+set output "plot.pdf"
+set title "GPLevenshtein - time over string size"
+set xlabel "String size"
 set ylabel "Time [s]"
 
-set label "2.53 GHz Intel Core 2 Duo" at screen 0.5,0.5 center
+set label "Nvidia Tesla C2075" at screen 0.5,0.5 center
 
-set samples 100000
-
-plot [0:90000] [0:63] 0.00000001*(x-10000)**2, 'GPLevenshtein-1-30000-100.csv' with lines
+plot '10k-50k-100k-200k-300k-400k-500k.csv' with lines

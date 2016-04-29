@@ -50,23 +50,14 @@ public class GPMatrix {
     }
   }
 
-  // Displays the content of matrix A
-  public static void printMatrix(double[][] A) {
-    for(int row=0; row < size; row++) {
-      for(int col=0; col < size; col++) {
-        System.out.print("\t" + A[row][col]);
-      }
-      System.out.print("\n");
-    }
-  }
-
 }
 
+// Is the class that sends job on the GPU
 class AparapiMatrixMul extends Kernel {
 
-  double[][] A;
-  double[][] B;
-  double[][] C;
+  double[][] A; // Matrix A
+  double[][] B; // Matrix B
+  double[][] C; // Matrix C, the result of AxB
   int size;
 
   public AparapiMatrixMul(double[][] A, double[][] B, double[][] C, int size) {
@@ -75,9 +66,10 @@ class AparapiMatrixMul extends Kernel {
   }
 
   @Override
+  // Kernel method
   public void run() {
-    int i = getGlobalId();
-    // Start kernel execution
+    int i = getGlobalId(); // The id of the thread
+
     for(int j=0; j < size; j++) {
       double sum = 0.0;
       for(int k=0; k < size; k++) {
@@ -85,7 +77,6 @@ class AparapiMatrixMul extends Kernel {
       }
       C[i][j] = sum;
     }
-    // End kernel execution
   }
 
 }

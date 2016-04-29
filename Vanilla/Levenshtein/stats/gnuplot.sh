@@ -1,6 +1,6 @@
 #! /bin/bash
-set terminal png
-set output "plot.png"
+set terminal pdfcairo
+set output "plot.pdf"
 set title "GPLevenshtein - time over strings size"
 set xlabel "Strings size"
 set ylabel "Time [s]"

@@ -1,6 +1,6 @@
 #! /bin/bash
-set terminal png
-set output "speedup_aparapi_matrix.png"
+set terminal pdfcairo
+set output "speedup_aparapi_matrix.pdf"
 set title "GPMatrix - speedup with aparapi"
 set xlabel "Matrix size"
 set ylabel "speedup"
