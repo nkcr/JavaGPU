@@ -1,4 +1,4 @@
-## Aparapi set up
+## JCuda set up
 
 *LD_LIBRARY_PATH* must be set with the path containing JCuda's .so
 
