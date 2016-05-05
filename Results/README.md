@@ -49,7 +49,13 @@ gnuplot> load 'speedup_aparapi_leven_gnuplot.sh'
 ### Matrix JCuda
 
 ```
-./speedup_csv.sh ../Vanilla/Matrix/stats/GPMatrix-100-3000-100.csv ../Analysis/JCuda/Matrix/stats/GPMatrix-100-3000-100.csv > speedup_jcuda_matrix_100-3000-100.csv
+./speedup_csv.sh ../Vanilla/Matrix/stats/GPMatrix-100-3000-100.csv ../Analysis/JCuda/Matrix/stats/GPMatrix-100-3000-100-x5.csv > speedup_jcuda_matrix_100-3000-100-x5.csv
+```
+
+### Levenshtein Aparapi
+
+```
+./speedup_csv.sh ../Vanilla/Levenshtein/stats/10k-50k-100k-200k-300k-400k-500k.csv ../Analysis/JCuda/Levenshtein/stats/10k-50k-100k-200k-300k-400k-500k-x5.csv > speedup_jcuda_leven_10k-50k-100k-200k-300k-400k-500k-x5.csv
 ```
 
 ### Stats
