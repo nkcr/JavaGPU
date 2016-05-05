@@ -25,7 +25,6 @@ public class GPMatrix {
 
     matrixInit(A,B);
 
-
     // Enable exception
     JCudaDriver.setExceptionsEnabled(true);
 
