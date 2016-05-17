@@ -100,7 +100,7 @@ public class GPMatrix {
 
   // Matrix random initialization of A and B
   public static void matrixInit(double[] A, double[] B) {
-    Random r = new Random();
+    Random r = new Random(1);
     for(int row=0; row < size; row++) {
       for(int col=0; col < size; col++) {
         A[ (row*size)+col ] = r.nextDouble();
