@@ -6,3 +6,5 @@ Benchmarking of different solutions to perform GPU computing via java.
 - **Commun** Commun stuff needed across the project like librairies
 - **Results** Contains comparison measures
 - **Vanilla** Code written in pure Java so as to have base metrics
+
+Licensed under the MIT license.
