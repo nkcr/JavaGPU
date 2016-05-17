@@ -1,0 +1,145 @@
+\subsection{Grades} \label{grades}
+
+To rank our options, we will give, based on each criteria, a grade going from 0 to 10, 10 being the best and 0 the worst.
+
+Time from update, adoption level and adequacy grade will go according to the following tables:
+
+\begin{center}
+\captionof{table}{Grade: Time from update}
+\begin{tabular}{|c|c|c|c|c|}
+	\hline
+	< 3 months & < 6 months & < 1 years & < 2 years & > 2 years \\
+	\hline
+	10 & 8 & 5 & 3 & 0 \\
+	\hline
+\end{tabular}
+\end{center}
+
+\begin{center}
+\captionof{table}{Grade: Adoption level, community activity and documentation}
+\begin{tabular}{|p{.25\textwidth}|p{.25\textwidth}|p{.25\textwidth}|p{.25\textwidth}|}
+	\hline
+	Is well referenced, found many articles and is well documented & 
+	Appears quite often in a google search, found some articles and has a fairly good documentation &
+	Found some results in a google search and has a documentation &
+	Didn't found much results in a google search, has a poor documentation \\
+	\hline
+	10 & 8 & 5 & 3 \\
+	\hline
+\end{tabular}
+\end{center}
+
+\begin{center}
+\captionof{table}{Grade: Adequacy}
+\begin{tabular}{|p{.25\textwidth}|p{.25\textwidth}|p{.25\textwidth}|p{.25\textwidth}|}
+	\hline
+	Fits perfectly our needs & 
+	Fits partially our needs, or the solution is not aimed to particularly fits out needs &
+	Doesn't fit our needs \\
+	\hline
+	10 & 3 & 0 \\
+	\hline
+\end{tabular}
+\end{center}
+
+\subsection{Grades table}
+
+According to our pre-analysis (see section \ref{pre analysis}) and our grades (section \ref{grades}), each candidates has been evaluated and got a corresponding mark. Based on the marks, we will choose the candidates that have the highest ones.
+
+\begin{longtable}{ | p{.20\textwidth} | p{.20\textwidth} | p{.20\textwidth} | p{.20\textwidth} | p{.10\textwidth} | }
+  
+  \hline
+  
+  & Time from update & Adoption level, community activity \& documenation & Adequacy & \textbf{Grade} \\
+  
+  \hline \hline
+  
+  \textbf{aparapi} &
+  10 &
+  10 &
+  10 &
+  \textbf{30} \\
+  
+  \hline \hline
+  
+  \textbf{jcuda} &
+  10 &
+  8 &
+  10 &
+  \textbf{28} \\
+  
+  \hline \hline
+  
+  \textbf{CUDA4J} &
+  5 &
+  10 &
+  10 &
+  \textbf{25} \\
+  
+  \hline \hline
+ 
+  \textbf{PJ2} &
+  10 &
+  5 &
+  10 &
+  \textbf{25} \\
+  
+  \hline \hline
+
+  \textbf{rootbeer} &
+  5 &
+  8 &
+  10 & 
+  \textbf{23} \\
+  
+  \hline \hline
+  
+  \textbf{java-gpu} &
+  8 &
+  5 &
+  10 &
+  \textbf{23} \\
+  
+  \hline \hline
+  
+  \textbf{JavaCL} &
+  8 &
+  5 &
+  10 &
+  \textbf{23} \\
+  
+  \hline \hline
+  
+  \textbf{lwjgl} &
+  10 &
+  10 &
+  3 &
+  \textbf{23} \\
+  
+  \hline \hline
+  
+  \textbf{jacc} &
+  5 &
+  5 &
+  10 &
+  \textbf{20} \\
+  
+  \hline \hline
+  
+  \textbf{jocl} &
+  5 &
+  5 &
+  10 &
+  20 \\
+  
+  \hline \hline
+  
+  \textbf{ScalaCL} &
+  5 &
+  5 &
+  10 &
+  20 \\
+  
+  \hline
+
+\end{longtable}

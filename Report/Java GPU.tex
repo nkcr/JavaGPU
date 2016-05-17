@@ -1,0 +1,151 @@
+% !TEX encoding = UTF-8 Unicode
+\include{header}
+\include{glossary}
+
+\begin{document}
+
+\lstdefinestyle{customc}{
+  belowcaptionskip=1\baselineskip,
+  breaklines=true,
+  frame=L,
+  xleftmargin=\parindent,
+  language=C,
+  showstringspaces=false,
+  basicstyle=\footnotesize\ttfamily,
+  keywordstyle=\bfseries\color{green!40!black},
+  commentstyle=\itshape\color{purple!40!black},
+  identifierstyle=\color{blue},
+  stringstyle=\color{orange},
+  basicstyle=\footnotesize,
+}
+
+\lstdefinestyle{customasm}{
+  belowcaptionskip=1\baselineskip,
+  frame=L,
+  xleftmargin=\parindent,
+  language=[x86masm]Assembler,
+  basicstyle=\footnotesize\ttfamily,
+  commentstyle=\itshape\color{purple!40!black},
+}
+
+\lstdefinestyle{custombash}{
+  belowcaptionskip=1\baselineskip,
+  frame=L,
+  xleftmargin=\parindent,
+  language=bash,
+  basicstyle=\footnotesize\ttfamily,
+}
+
+\def\myTitle{Java GPU: technologies comparison}
+\def\myName{Noémien Kocher}
+\def\myUni{University of Applied Sciences of Western Switzerland}
+\def\myDepartment{Department of computer science}
+\def\mySupervisors{Kuonen Pierre, Jean Hennebert, Gon\c calves Louren\c co Marco Jos\'e, Beat Wolf}
+
+\lstset{escapechar=@,style=customc}
+
+\begin{titlepage}
+    \begin{center}
+        \large
+
+        \hfill
+
+        \vfill
+
+        \begingroup
+            \MakeUppercase{\myTitle} \\ \bigskip
+        \endgroup
+
+        \textsc{\myName}
+
+        \vfill
+
+        %\includegraphics[width=6cm]{gfx/TFZsuperellipse_bw} \\ \medskip
+
+        %\mySubtitle \\ \medskip
+        {\footnotesize A semester project} \\ \bigskip
+        %\myDegree \\
+        \myDepartment \\
+        %\myFaculty \\
+        %\vspace{1em}
+        \myUni \\ %\bigskip
+        {\footnotesize Fribourg, Switzerland}
+
+        \vfill
+
+        %\hfill
+        {\footnotesize \textcopyright\ May 2016 \myName} \\ \bigskip
+        {\footnotesize Supervisors: \mySupervisors}
+    \end{center}
+\end{titlepage}
+
+\begin{abstract}
+
+The last years have seen the rise of using GPU's not only for graphics computing, but also for a more global use in parallel computing. This completely new field comes with dedicated GPU's (GPGPU, Global Purpose GPU) that are not specialized anymore, but can be used to compute operations normally conducted on a CPU. Along with hardwares comes new programming technologies that enable programmers to use the GPU in their programs. This field is mainly divided between CUDA, which comes from NVIDIA, and OpenCL, which is an open standard. In this paper, we will be looking at technologies that enable programmers to perform GPU operations from Java code so as to evaluate them. The first chapter (\textit{Introduction}) will select the candidates and set the test battery. The second one (\textit{Analysis}) will evaluate the candidates according to our test battery. The third chapter (\textit{Results}) will compare the results obtained between the candidates and the last chapter (\textit{Conclusion}) will finally explain which solution is better and in which cases.
+
+\smallskip
+\noindent \textbf{Keywords.} Java, GPU, CUDA, OpenCL, Aparapi, JCuda, Benchmark
+
+\end{abstract}
+
+\printglossaries
+
+\tableofcontents
+\listoffigures
+
+\chapter{Introduction}
+
+\input{chapters/chapter1}
+
+\chapter{Analysis}
+\input{chapters/chapter2}
+
+\chapter{Results}
+\input{chapters/chapter4}
+
+\chapter{Conclusion}
+\input{chapters/chapter4.2}
+
+\printbibliography
+
+\chapter*{Declaration of Authorship}
+\input{chapters/chapter5}
+
+\appendix
+\chapter{Source code structure}
+\input{chapters/appendix}
+
+\chapter{Versions used}
+\input{chapters/appendix2}
+
+\chapter{List of initial candidates} \label{candidates}
+\includepdf[pages=-]{Listedescandidats.pdf}
+
+\chapter{Installation of CUDA in Ubuntu 14.04}
+\input{chapters/appendix3}
+
+\chapter{Uncertainty discussed} \label{uncertain}
+\input{appendix/uncertainty}
+
+\chapter{Raw values}
+\input{chapters/appendix_row_values}
+
+\chapter{Vanilla matrix measure comparison} \label{vanilla matrix both}
+\input{chapters/vanilla_matrix_comparison}
+
+\chapter{External feedback survey for Aparapi} \label{aparapi code}
+
+This appendix contains the feedback sheets used to evaluate Aparapi on the matrix multiplication and the Levenshtein distance computation respectively.
+\includepdf[pages=-]{appendix/Aparapi_leven.pdf}
+\includepdf[pages=-]{appendix/Aparapi_matrix.pdf}
+
+\chapter{External feedback survey for JCuda} \label{jcuda code}
+
+This appendix contains the feedback sheets used to evaluate JCuda on the matrix multiplication and the Levenshtein distance computation respectively.
+
+\includepdf[pages=-]{appendix/JCuda_matrix.pdf}
+\includepdf[pages=-]{appendix/JCuda_leven.pdf}
+
+\end{document}
+
+% https://www.sharelatex.com/blog/2013/08/02/thesis-series-pt1.htmlx

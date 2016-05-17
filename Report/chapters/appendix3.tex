@@ -1,0 +1,27 @@
+\begin{lstlisting}
+$ wget http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1404/x86_64/cuda-repo-ubuntu1404_7.5-18_amd64.deb
+$ sudo apt-get update
+$ sudo apt-get install cuda
+$ export CUDA_HOME=/usr/local/cuda-7.5 
+$ export LD_LIBRARY_PATH=${CUDA_HOME}/lib64 
+ 
+$ PATH=${CUDA_HOME}/bin:${PATH} 
+$ export PATH
+	
+$ wget http://us.download.nvidia.com/XFree86/Linux-x86_64/352.79/NVIDIA-Linux-x86_64-352.79.run
+$ chmod +x NVIDIA-Linux-x86_64-352.79.run
+$ sudo ./NVIDIA-Linux-x86_64-352.79.run
+	
+$ cuda-install-samples-7.5.sh ~/cuda
+$ cd ~cuda/NVIDIA_CUDA-7.5_Samples 
+$ cd 1_Utilities/deviceQuery 
+$ make
+	
+\end{lstlisting}
+
+For the driver to be installed, Xserver must be disabled :
+
+\begin{lstlisting}
+# /etc/default/grub
+$ GRUB_CMDLINE_LINUX_DEFAULT="text"
+\end{lstlisting}

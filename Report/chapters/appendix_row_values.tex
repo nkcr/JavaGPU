@@ -1,0 +1,121 @@
+This appendix contains the raw values used for the plots in this document.
+
+\section{Quick mesasure - matrix} \label{raw values quick matrix}
+
+On a single execution. Double precision on an Intel(R) Xeon(R) CPU E5-2609 v2 2.50GHz.
+
+\begin{tabular}{|c|c|}
+  \hline
+  \bfseries Matrix size & \bfseries Execution time [s]
+  \csvreader{csv/quick-GPMatrix-100-3000-100.csv}{}
+    {\\\hline\csvcoli&\csvcolii}
+  \\\hline
+\end{tabular}
+
+\section{Quick measure - Leven} \label{raw values quick leven}
+
+On a single execution. On an Intel(R) Xeon(R) CPU E5-2609 v2 2.50GHz.
+
+\begin{tabular}{|c|c|}
+  \hline
+  \bfseries String size & \bfseries Execution time [s]
+  \csvreader{csv/quick-10k-50k-100k-200k-300k-400k-500k.csv}{}
+    {\\\hline\csvcoli&\csvcolii}
+  \\\hline
+\end{tabular}
+
+\section{Aparapi - matrix} \label{raw values aparapi matrix}
+
+Average of 5 executions. Double precision - Nvidia Tesla C2075.
+
+\begin{tabular}{|c|c|}
+  \hline
+  \bfseries Matrix size & \bfseries Execution time [s]
+  \csvreader{csv/aparapi-GPMatrix-100-3000-100-x5.csv}{}
+    {\\\hline\csvcoli&\csvcolii}
+  \\\hline
+\end{tabular}
+
+\section{Aparapi - Leven} \label{raw values aparapi leven}
+
+Average of 5 executions. Nvidia Tesla C2075.
+
+\begin{tabular}{|c|c|}
+  \hline
+  \bfseries String size & \bfseries Execution time [s]
+  \csvreader{csv/aparapi-10k-50k-100k-200k-300k-400k-500k-x5.csv}{}
+    {\\\hline\csvcoli&\csvcolii}
+  \\\hline
+\end{tabular}
+
+\section{JCuda - matrix} \label{raw values jcuda matrix}
+
+Average of 5 executions. Double precision - Nvidia Tesla C2075.
+
+\begin{tabular}{|c|c|}
+  \hline
+  \bfseries Matrix size & \bfseries Execution time [s]
+  \csvreader{csv/jcuda-GPMatrix-100-3000-100-x5.csv}{}
+    {\\\hline\csvcoli&\csvcolii}
+  \\\hline
+\end{tabular}
+
+\section{JCuda - Leven} \label{raw values jcuda leven}
+
+Average of 5 executions. Nvidia Tesla C2075.
+
+\begin{tabular}{|c|c|}
+  \hline
+  \bfseries String size & \bfseries Execution time [s]
+  \csvreader{csv/jcuda-10k-50k-100k-200k-300k-400k-500k-x5.csv}{}
+    {\\\hline\csvcoli&\csvcolii}
+  \\\hline
+\end{tabular}
+
+\section{Speedup Aparapi matrix} \label{raw values speedup aparapi matrix}
+
+Average of 5 executions. Nvidia Tesla C2075 versus Intel(R) Xeon(R) CPU E5-2609 v2 2.50GHz.
+
+\begin{tabular}{|c|c|}
+  \hline
+  \bfseries Matrix size & \bfseries Speedup
+  \csvreader{csv/speedup_aparapi_matrix_100-3000-100-x5.csv}{}
+    {\\\hline\csvcoli&\csvcolii}
+  \\\hline
+\end{tabular}
+
+\section{Speedup Aparapi Leven} \label{raw values speedup aparapi Leven}
+
+Average of 5 executions. Nvidia Tesla C2075 versus Intel(R) Xeon(R) CPU E5-2609 v2 2.50GHz.
+
+\begin{tabular}{|c|c|}
+  \hline
+  \bfseries String size & \bfseries Speedup
+  \csvreader{csv/speedup_aparapi_leven_10k-50k-100k-200k-300k-400k-500k-x5.csv}{}
+    {\\\hline\csvcoli&\csvcolii}
+  \\\hline
+\end{tabular}
+
+\section{Speedup JCuda matrix} \label{raw values speedup jcuda matrix}
+
+Average of 5 executions. Nvidia Tesla C2075 versus Intel(R) Xeon(R) CPU E5-2609 v2 2.50GHz.
+
+\begin{tabular}{|c|c|}
+  \hline
+  \bfseries Matrix size & \bfseries Speedup
+  \csvreader{csv/speedup_jcuda_matrix_100-3000-100-x5.csv}{}
+    {\\\hline\csvcoli&\csvcolii}
+  \\\hline
+\end{tabular}
+
+\section{Speedup JCuda Leven} \label{raw values speedup jcuda Leven}
+
+Average of 5 executions. Nvidia Tesla C2075 versus Intel(R) Xeon(R) CPU E5-2609 v2 2.50GHz.
+
+\begin{tabular}{|c|c|}
+  \hline
+  \bfseries String size & \bfseries Speedup
+  \csvreader{csv/speedup_jcuda_leven_10k-50k-100k-200k-300k-400k-500k-x5.csv}{}
+    {\\\hline\csvcoli&\csvcolii}
+  \\\hline
+\end{tabular}
